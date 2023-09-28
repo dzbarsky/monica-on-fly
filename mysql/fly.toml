@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for zbarsky-monica-mysql on 2023-09-24T23:00:27-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "zbarsky-monica-mysql"
+primary_region = "bos"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[build]
+  image = "mysql:8.0.32"
+
+[env]
+  MYSQL_DATABASE = "monica_db"
+  MYSQL_USER = "monica_user"
+
+[processes]
+  app = "--datadir /data/mysql --default-authentication-plugin mysql_native_password --performance-schema=OFF --innodb-buffer-pool-size 64M"
+
+[[mounts]]
+  source = "mysqldata"
+  destination = "/data"

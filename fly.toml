@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for zbarsky-monica on 2023-09-25T11:05:49-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "zbarsky-monica"
+primary_region = "bos"
+
+[env]
+  APP_DISABLE_SIGNUP = "false"
+  #APP_ENV = "production"
+  CACHE_DRIVER = "database"
+  DB_DATABASE = "monica_db"
+  DB_USERNAME = "monica_user"
+  DB_HOST = "zbarsky-monica-mysql.internal"
+  DB_PORT = "3306"
+  LOG_CHANNEL = "stderr"
+  QUEUE_DRIVER = "sync"
+  SESSION_DRIVER = "database"
+  MAIL_HOST="smtp.elasticemail.com"
+  MAIL_PORT="2525"
+  MAIL_USERNAME="dzbarsky@gmail.com"
+  MAIL_FROM_ADDRESS = "dzbarsky@gmail.com"
+  MAIL_FROM_NAME = "Monica, Your Humble Servant"
+
+[[mounts]]
+  source = "htmlstorage"
+  destination = "/var/www/html/storage"
